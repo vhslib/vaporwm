@@ -1,0 +1,7 @@
+#!/bin/bash
+
+Xephyr -br -ac -noreset -fullscreen +extension Composite :1 &
+sleep 2
+cd /home/vhslib/desktop/vaporwm
+DISPLAY=:1 picom &
+DISPLAY=:1 scripts/set-gif-bg > /dev/null

@@ -1,0 +1,22 @@
+#!/bin/bash
+
+counter=0
+count=20
+
+while true; do
+    if [ $counter -lt 10 ]; then
+        padded="0$counter"
+    else
+        padded=$counter
+    fi
+
+    hsetroot -cover "scripts/no-longer-human-frames/no-longer-human.gif.0$padded"
+
+    let counter=counter+1
+
+    if [ $counter -eq $count ]; then
+        counter=0
+    fi
+
+    sleep 0.01
+done
