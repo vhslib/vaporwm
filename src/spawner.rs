@@ -12,7 +12,10 @@ impl Spawner {
 
     pub fn handle_event(&self, event: &Event) {
         if let Event::KeyPress(event) = event {
-            let keycode = Keycode::try_from(event.detail).unwrap();
+            let Ok(keycode) = Keycode::try_from(event.detail)
+            else {
+                return;
+            };
 
             match keycode {
                 Keycode::PrintScreen => bash("maim --hidecursor | xclip -selection clipboard -t image/png"),

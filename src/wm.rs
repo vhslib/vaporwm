@@ -376,7 +376,11 @@ impl Wm {
     }
 
     fn handle_key_press(&self, event: &KeyPressEvent) {
-        let keycode = Keycode::try_from(event.detail).unwrap();
+        let Ok(keycode) = Keycode::try_from(event.detail)
+        else {
+            return;
+        };
+
         let is_shift = event.state.contains(ModMask::SHIFT);
 
         match keycode {
